@@ -44,7 +44,6 @@ export default (env: EnvVariables) => {
     },
 
     devtool: isDev && 'inline-source-map',
-
     devServer: isDev ? {
       port: env.port ?? 3000,
       open: true,
