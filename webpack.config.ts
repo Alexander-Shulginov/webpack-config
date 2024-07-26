@@ -1,12 +1,12 @@
 import webpack from 'webpack';
 import path from 'path';
-import { buildWebpack } from './config/build/buildWepback';
-import { BuildMode, BuildPaths } from './config/build/types/types';
+import { buildWebpack } from './config/webpack/Webpack';
+import { BuildMode, BuildPaths } from './config/webpack/types/types';
 
 
 interface EnvVar {
-  mode: BuildMode;
   port: number;
+  mode: BuildMode;
 }
 
 export default (env: EnvVar) => {
