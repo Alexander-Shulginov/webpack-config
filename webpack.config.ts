@@ -10,7 +10,6 @@ interface EnvVar {
   mode: Mode;
   port: number;
 }
-
 export default (env: EnvVar) => {
 
   const isDev = env.mode === 'development';
