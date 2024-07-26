@@ -1,4 +1,3 @@
-
 import path from 'path';
 import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
@@ -15,6 +14,7 @@ interface EnvVar {
 export default (env: EnvVar) => {
 
   const isDev = env.mode === 'development';
+  const isProd = env.mode === 'production';
 
   const config: webpack.Configuration = {
 
@@ -24,22 +24,26 @@ export default (env: EnvVar) => {
 
     output: {
       path: path.resolve(__dirname, 'build'),
-      filename: 'bundle.[contenthash].js',
+      filename: 'bundle.[contenthash:8].js',
       clean: true,
     },
 
     plugins: [
-      new HtmlWebpackPlugin({ template: path.resolve(__dirname, 'public', 'index.html') }),
-      new MiniCssExtractPlugin({
-        filename: 'style.[contenthash].css',
+      new HtmlWebpackPlugin({ template: path.resolve(__dirname, 'src', 'index.html') }),
+      isProd && new MiniCssExtractPlugin({
+        filename: 'css/style.[contenthash:8].css',
       })
     ].filter(Boolean),
 
     module: {
       rules: [
         {
-          test: /\.css$/i,
-          use: [MiniCssExtractPlugin.loader, 'css-loader'],
+          test: /\.s[ac]ss$/i,
+          use: [
+            isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+            'css-loader',
+            'sass-loader'
+          ],
         },
         {
           test: /\.tsx?$/,

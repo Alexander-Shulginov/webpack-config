@@ -1,5 +1,6 @@
 import { apiKey } from "./options";
-import '../scss/style.css';
+import '../scss/style.scss';
+
 // CONFIG
 const entryPoint: string = 'http://api.weatherapi.com/v1/';
 const requestType: RequestType = 'current';
