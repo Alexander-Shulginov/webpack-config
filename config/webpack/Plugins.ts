@@ -14,7 +14,7 @@ export function buildPlugins({ mode, paths, analyzer }: BuildOptions): Configura
   const isProd = mode === 'production';
 
   const plugins: Configuration['plugins'] = [
-    new HtmlWebpackPlugin({ template: paths.html }),
+    new HtmlWebpackPlugin({ template: paths.html })
   ]
 
   if (isDev) {
@@ -23,17 +23,18 @@ export function buildPlugins({ mode, paths, analyzer }: BuildOptions): Configura
   }
 
   if (isProd) {
+
     plugins.push(new MiniCssExtractPlugin({
       filename: 'css/style.[contenthash:8].css',
     }));
-    plugins.push(
-      new CopyPlugin({
-        patterns: [
-          { from: path.resolve(paths.assets), to: paths.output },
-        ],
-      }),
 
-    )
+    // plugins.push(
+    // new CopyPlugin({
+    // patterns: [
+    // { from: path.resolve(paths.assets), to: paths.output },
+    // ],
+    // }),
+    // )
 
   }
 

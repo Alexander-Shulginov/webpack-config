@@ -1,4 +1,5 @@
 import webpack from 'webpack';
+import path from 'path';
 import { BuildOptions } from './types/types';
 import { buildDevServer } from './DevServer';
 import { buildLoaders } from './Loaders';
@@ -17,8 +18,9 @@ export function buildWebpack(options: BuildOptions): webpack.Configuration {
 
     output: {
       path: paths.output,
-      filename: 'bundle.[contenthash:8].js',
+      filename: 'js/bundle.[contenthash:8].js',
       clean: true,
+      // assetModuleFilename: path.join('img', '[name].[contenthash][ext]'),
     },
 
     plugins: buildPlugins(options),

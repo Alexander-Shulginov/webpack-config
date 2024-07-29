@@ -1,15 +1,41 @@
+import path from "path";
 import { ModuleOptions } from "webpack";
 import { BuildOptions } from "./types/types";
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import loader from "mini-css-extract-plugin/types/loader";
 
 export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
 
   const isDev = options.mode === 'development';
 
-  const assetsLoader = {
-    test: /\.(png|svg|jpg|jpeg|gif)$/i,
+  const svgLoader = {
+    test: /\.svg$/,
     type: 'asset/resource',
+    generator: {
+      filename: path.join('icons', '[name].[contenthash:5][ext]'),
+    }
+  }
+
+  const imgLoader = {
+    test: /\.(png|jpg|jpeg|webp|avif|svg|gif)$/i,
+    type: 'asset/resource',
+    generator: {
+      filename: path.join('img', '[name].[contenthash:5][ext]'),
+    }
+  }
+
+  const htmlLoader = {
+    test: /\.html$/,
+    rules: [
+      {
+        use: [
+          {
+            loader: 'html-loader',
+            options: { minimize: true },
+
+          }
+        ]
+      }
+    ]
   }
 
   const scssLoader = {
@@ -33,7 +59,9 @@ export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
   }
 
   return [
-    assetsLoader,
+    htmlLoader,
+    svgLoader,
+    imgLoader,
     scssLoader,
     tsLoader,
   ]
