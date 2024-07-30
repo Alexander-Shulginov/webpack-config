@@ -1,4 +1,13 @@
 body {
   background: gray;
   font-size: 34px;
+  font-family: "Inter";
+}
+
+@font-face {
+  display: swap;
+  font-family: "Inter";
+  font-weight: 700;
+  font-style: normal;
+  src: url("../assets/fonts/inter-bold.woff") format("woff");
 }

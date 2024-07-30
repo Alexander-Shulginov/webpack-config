@@ -16,10 +16,19 @@ export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
   }
 
   const imgLoader = {
-    test: /\.(png|jpg|jpeg|webp|avif|svg|gif)$/i,
+    test: /\.(png|jpg|jpeg|webp|avif|gif)$/i,
     type: 'asset/resource',
     generator: {
       filename: path.join('img', '[name].[contenthash:5][ext]'),
+    }
+
+  }
+
+  const fontsLoader = {
+    test: /\.(woff|woff2|eot|ttf|otf)$/i,
+    type: 'asset/resource',
+    generator: {
+      filename: path.join('fonts', '[name].[contenthash:5][ext]'),
     }
   }
 
@@ -62,6 +71,7 @@ export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
     htmlLoader,
     svgLoader,
     imgLoader,
+    fontsLoader,
     scssLoader,
     tsLoader,
   ]
