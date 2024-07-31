@@ -3,7 +3,6 @@ import webpack from 'webpack';
 import { buildWebpack } from './config/webpack/Webpack';
 import { BuildMode, BuildPaths } from './config/webpack/types/types';
 
-
 interface EnvVar {
   port: number;
   mode: BuildMode;
