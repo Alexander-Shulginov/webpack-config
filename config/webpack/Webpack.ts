@@ -18,7 +18,7 @@ export function buildWebpack(options: BuildOptions): webpack.Configuration {
     output: {
       path: paths.output,
       filename: 'js/bundle.[contenthash:5].js',
-      clean: true,
+      clean: isDev ? false : true,
     },
 
     plugins: buildPlugins(options),
